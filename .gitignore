@@ -1,0 +1,19 @@
+# dependencies
+/node_modules
+
+# build output
+/dist
+
+# IDE files
+.idea
+.vscode
+
+# logs and backups
+*.log
+node_modules
+.env
+package-lock.json
+
+# misc
+.DS_Store
+Thumbs.db

@@ -1,0 +1,20 @@
+{
+  "name": "front-register",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "vite",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@iexec/dataprotector": "0.3.0",
+    "iexec": "8.4.0"
+  },
+  "devDependencies": {
+    "vite": "^4.5.0",
+    "vite-plugin-node-polyfills": "^0.16.0"
+  }
+}
