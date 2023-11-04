@@ -2,17 +2,34 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Register</title>
+		<title>Natta Finance</title>
+		<link rel="stylesheet" href="style.css">
+		<link rel="icon" type="image/x-icon" href="favicon.ico">
+		<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body>
-		<h1>Register</h1>
-
-		<input type="email" id="email-input" placeholder="email">
-		<input type="number" id="tvl-input" placeholder="Total Locked Value">
-		<button id="register-btn">Register</button>
-		<div>
+		<header>
+			<h1>Negociations</h1>
+			<p>This page allows potential buyers and sellers to communicate privately for merger preparations.</p>
+		</header>
+		<section>
+			<h2>Sellers - Register</h2>
+			<p>Get listed privately to sell your DAO or tokenized company.</p>
+			<input type="email" id="email-input" placeholder="email">
+			<input type="number" id="tvl-input" placeholder="Total Locked Value">
+			<button id="register-btn">Register</button>
 			<div id="result"></div>
-		</div>
+		</section>
+		<br>
+		<section>
+			<h2>Buyers - Contact</h2>
+			<p>As a potential buyer, contact the sellers by category.</p>
+			<p>Your message:</p><textarea rows="2" cols="25" type="string" id="message-input" placeholder="Hey! I'm interested in buying a DAO in that range. ">
+			</textarea>
+			<p> Reachable DAOs with a treasury ranging from:</p>
+			<ul id="list-protected-data"></ul>
+		</section>
 		<script type="module" src="main.js"></script>
 	</body>
 </html>
