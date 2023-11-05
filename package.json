@@ -12,6 +12,8 @@
   "dependencies": {
     "@iexec/dataprotector": "0.3.0",
     "@iexec/web3mail": "^0.5.2",
+    "@web3inbox/core": "^0.0.22",
+    "@web3inbox/widget-react": "^0.6.25",
     "iexec": "8.4.0"
   },
   "devDependencies": {
