@@ -1,5 +1,7 @@
 import { IExecDataProtector } from "@iexec/dataprotector"
 import { Web3InboxClient } from '@web3inbox/core'
+import { IExecWeb3mail } from "@iexec/web3mail"
+import { ethers } from "ethers";
 
 const { VITE_PUBLIC_KEY, VITE_WEB3MAIL_ADDRESS, VITE_PRIVATE_KEY, VITE_PROTECTED_DATA, VITE_PROJECT_ID} = import.meta.env;
 const initWeb3Provider = async () => {
@@ -48,25 +50,21 @@ const registerBtn = document.getElementById('register-btn')
 const subscribeBtn = document.getElementById('subscribe-btn')
 const emailInput = document.getElementById('email-input')
 const tvlInput = document.getElementById('tvl-input')
-
+const currencySelect = document.getElementById('currency-select')
 
 registerBtn.addEventListener('click', async () => {
 	const email = emailInput.value
-	const tvl = tvlInput.value
-	const currency = document.getElementById('currency-select').value
-	if (currency === 'ETH') {
+	let tvl = tvlInput.value
+	if (currencySelect.value === 'ETH') {
 		tvl = convertedTVL(tvl)
 	}
-
 	register(tvl,email)
 })
 
 const client = Web3InboxClient.init({ projectId: VITE_PROJECT_ID })
 subscribeBtn.addEventListener('click', async () => {
-
 	let accountState = ''
 	let subscriptionState = ''
-
 	client.register({ onSign })
 	client.watchAccount(acc => (accountState = acc))
 	client.watchSubscription(sub => (subscriptionState = sub))
@@ -74,12 +72,9 @@ subscribeBtn.addEventListener('click', async () => {
 	const messages = client.getMessageHistory()
 })
 
-import { ethers } from "ethers";
 
 const convertedTVL =  async (tvl) => {
-	const provider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/YOUR_PROJECT_ID");
-
-	
+	const provider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/2Xi91CGBfRzqCMzD3RMmqlGd9Hc")
 	const contractAddress = "0x90430C5b8045a1E2A0Fc4e959542a0c75b576439"
 	const contractABI = [
 		{
@@ -102,8 +97,6 @@ const convertedTVL =  async (tvl) => {
 	console.log("TVL in USD:", tvlInUSD);
 	return tvlInUSD
 }
-
-
 
 const listProtectedData = await dataProtector.fetchProtectedData({
 	schema: {
@@ -164,15 +157,13 @@ for (let i = 0; i < MAX_CATEGORY; i++) {
 				sendMail(messageInput.value, VITE_PROTECTED_DATA)
 			})
 			//Send message as notification
-			let sendNotificationBtn = document.getElementById("send-notification-btn")
+			let sendNotificationBtn = document.getElementById("notify-btn")
 			sendNotificationBtn.addEventListener('click', async () => {
 					//TODO
 			});
 		})
 	}
 }
-
-import { IExecWeb3mail } from "@iexec/web3mail"
 
 const web3mail = new IExecWeb3mail(web3Provider) 
 
@@ -186,5 +177,3 @@ const sendMail = async (emailContent, protectedData) => {
 
 	console.log(result)
 }
-
-
